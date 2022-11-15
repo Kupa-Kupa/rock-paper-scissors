@@ -69,10 +69,8 @@ function getPlayerSelection(){
     // check if choice is valid
     // if valid return selection
     if (selection == "rock" || selection == "paper" || selection == "scissors") {
-        // split selection into an array
-        let selectionArray = selection.split('');
-        // Change the first array index to upper case and concatenate the rest of the selection string back on
-        selection = `${selectionArray[0].toUpperCase()}${selection.slice(1)}`;
+        // call capitalize function
+        selection = capitalize(selection);
         return selection;
     } else {
         // if invalid get another choice and check again
@@ -82,10 +80,8 @@ function getPlayerSelection(){
             selection = prompt("Choose: rock, paper, or scissors").toLowerCase();
 
             if (selection == "rock" || selection == "paper" || selection == "scissors") {
-                // split selection into an array
-                let selectionArray = selection.split('');
-                // Change the first array index to upper case and concatenate the rest of the selection string back on
-                selection = `${selectionArray[0].toUpperCase()}${selection.slice(1)}`;
+                // call capitalize function
+                selection = capitalize(selection);
                 return selection;
                 invalid = false;
             }
@@ -163,4 +159,4 @@ function game() {
 
 }
 
-//console.log(game());
+console.log(game());
