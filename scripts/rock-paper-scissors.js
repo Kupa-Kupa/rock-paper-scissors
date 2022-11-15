@@ -25,7 +25,8 @@ function getComputerSelection(){
 // could also get computer selection using an array
 function getComputerSelectionArray(){
     // declare array variable with choices
-    const computerChoices = [`rock`, `paper`, `scissors`]
+    // I want them capitalized for the win, lose, draw message
+    const computerChoices = [`Rock`, `Paper`, `Scissors`]
     // randomly choose array index between 0 and array length
     const computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
@@ -46,6 +47,10 @@ function getPlayerSelection(){
     // check if choice is valid
     // if valid return selection
     if (selection == "rock" || selection == "paper" || selection == "scissors") {
+        // split selection into an array
+        let selectionArray = selection.split('');
+        // Change the first array index to upper case and concatenate the rest of the selection string back on
+        selection = `${selectionArray[0].toUpperCase()}${selection.slice(1)}`;
         return selection;
     } else {
         // if invalid get another choice and check again
@@ -55,6 +60,11 @@ function getPlayerSelection(){
             selection = prompt("Choose: rock, paper, or scissors").toLowerCase();
 
             if (selection == "rock" || selection == "paper" || selection == "scissors") {
+                // split selection into an array
+                let selectionArray = selection.split('');
+                // Change the first array index to upper case and concatenate the rest of the selection string back on
+                selection = `${selectionArray[0].toUpperCase()}${selection.slice(1)}`;
+                return selection;
                 invalid = false;
             }
         }
@@ -78,7 +88,7 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         result = `Draw! ${playerSelection} draws ${computerSelection}`;
         return result;
-    } else if ((playerSelection == 'scissors' && computerSelection == 'paper') || (playerSelection == 'paper' && computerSelection == 'rock') || (playerSelection == 'rock' && computerSelection == 'scissors')) {
+    } else if ((playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock') || (playerSelection == 'Rock' && computerSelection == 'Scissors')) {
         result = `You Win! ${playerSelection} beats ${computerSelection}`;
         return result;
     } else {
