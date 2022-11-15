@@ -29,6 +29,9 @@ function getComputerSelectionArray(){
     // randomly choose array index between 0 and array length
     const computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
+    //this could also be done with ">> 0" "<< 0" ">>> 0" or "| 0"
+    //const computerSelection = computerChoices[Math.random() * computerChoices.length >> 0];
+
     return computerSelection;
 }
 //console.log(getComputerSelectionArray());
