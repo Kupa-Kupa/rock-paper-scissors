@@ -20,8 +20,19 @@ function getComputerSelection(){
         return computerSelection = "scissors";
     }
 }
-
 //console.log(getComputerSelection());
+
+// could also get computer selection using an array
+function getComputerSelectionArray(){
+    // declare array variable with choices
+    const computerChoices = [`rock`, `paper`, `scissors`]
+    // randomly choose array index between 0 and array length
+    const computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    return computerSelection;
+}
+//console.log(getComputerSelectionArray());
+
 
 
 // get player selection
@@ -88,7 +99,7 @@ function game() {
     // loop through 5 rounds
     for (let i = 0; i < 5; i++) {
         // get result of the round
-        result = playRound(getPlayerSelection(), getComputerSelection());
+        result = playRound(getPlayerSelection(), getComputerSelectionArray());
         console.log(result);
 
         //check if returned result message includes lose win or draw and increment
