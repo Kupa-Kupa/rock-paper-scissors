@@ -38,6 +38,28 @@ function getComputerSelectionArray(){
 //console.log(getComputerSelectionArray());
 
 
+// Capitalize word with array conversion
+function capitalize2(word) {
+    // split selection into an array
+    let wordArray = word.split('');
+    // Change the first array index to upper case and concatenate the rest of the selection string back on
+    word = `${wordArray[0].toUpperCase()}${word.slice(1)}`;
+    return word;
+}
+
+//console.log(capitalize2('ello'));
+
+
+// Capitalize word with .replace - superior to using an array
+function capitalize(word) {
+    // don't actually need regex
+    // word = word.replace(/^[a-z]/,word.charAt(0).toUpperCase());
+    word = word.replace(word.charAt(0), word.charAt(0).toUpperCase());
+    return word;
+}
+
+//console.log(capitalize('hello'));
+
 
 // get player selection
 function getPlayerSelection(){
@@ -141,4 +163,4 @@ function game() {
 
 }
 
-console.log(game());
+//console.log(game());
