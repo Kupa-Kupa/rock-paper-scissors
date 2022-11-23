@@ -1,32 +1,40 @@
-// Rock Paper Scissors
+/*  Rock Paper Scissors with buttons ui */
 
-// don't really need to store the results at all since the result is returned
-// const computerSelection = getComputerSelection();
+/*  Requirements
 
-// const playerSelection = getPlayerSelection();
+    Player should be able to play the game by clicking on buttons
+    Button for each option - rock, paper, scissors
+    Display results on screen
+    Display running score and announce winner of the game when
+    one player reaches 5 points
+*/
 
 
-// computer gets choice of rock, paper, or scissors
+// get reference to buttons
+let rock = document.getElementById("Rock");
+
+let paper = document.getElementById("Paper");
+
+let scissors = document.getElementById("Scissors");
+
+let gameResult = document.getElementById("score");
+
+// play round on button click
+rock.addEventListener("click", playRound);
+
+paper.addEventListener("click", playRound);
+
+scissors.addEventListener("click", playRound);
+
+
+
+// computer gets choice of rock, paper, or scissors from an array
 function getComputerSelection(){
-    let computerSelection;
-    const num = Math.floor((Math.random() * 3) + 1);
-    //console.log(num);
 
-    if (num === 1) {
-        return computerSelection = "rock";
-    } else if (num === 2) {
-        return computerSelection = "paper";
-    } else if (num === 3) {
-        return computerSelection = "scissors";
-    }
-}
-//console.log(getComputerSelection());
-
-// could also get computer selection using an array
-function getComputerSelectionArray(){
     // declare array variable with choices
     // I want them capitalized for the win, lose, draw message
-    const computerChoices = [`Rock`, `Paper`, `Scissors`]
+    const computerChoices = [`Rock`, `Paper`, `Scissors`];
+
     // randomly choose array index between 0 and array length
     const computerSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
@@ -35,128 +43,57 @@ function getComputerSelectionArray(){
 
     return computerSelection;
 }
-//console.log(getComputerSelectionArray());
-
-
-// Capitalize word with array conversion
-function capitalize2(word) {
-    // split selection into an array
-    let wordArray = word.split('');
-    // Change the first array index to upper case and concatenate the rest of the selection string back on
-    word = `${wordArray[0].toUpperCase()}${word.slice(1)}`;
-    return word;
-}
-
-//console.log(capitalize2('ello'));
-
-
-// Capitalize word with .replace - superior to using an array
-function capitalize(word) {
-    // don't actually need regex
-    // word = word.replace(/^[a-z]/,word.charAt(0).toUpperCase());
-    word = word.replace(word.charAt(0), word.charAt(0).toUpperCase());
-    return word;
-}
-
-//console.log(capitalize('hello'));
-
-
-// get player selection
-function getPlayerSelection(){
-    // prompt user for their choice
-    let selection = prompt("rock, paper or scissors?").toLowerCase();
-
-    // check if choice is valid
-    // if valid return selection
-    if (selection == "rock" || selection == "paper" || selection == "scissors") {
-        // call capitalize function
-        selection = capitalize(selection);
-        return selection;
-    } else {
-        // if invalid get another choice and check again
-        let invalid = true;
-
-        while (invalid) {
-            selection = prompt("Choose: rock, paper, or scissors").toLowerCase();
-
-            if (selection == "rock" || selection == "paper" || selection == "scissors") {
-                // call capitalize function
-                selection = capitalize(selection);
-                return selection;
-                invalid = false;
-            }
-        }
-
-        return selection;
-    }
-}
-
-//console.log(getPlayerSelection());
-
-
-// compare answers and determine winner
-
 
 
 // play a round
-function playRound(playerSelection, computerSelection) {
+function playRound(event) {
     let result;
+
+    // get computer selection
+    let computerSelection = getComputerSelection();
+
+    // get player selection from button id
+    let playerSelection = event.target.id;
 
     // determine the winner and return the result
     if (playerSelection == computerSelection) {
         result = `Draw! ${playerSelection} draws ${computerSelection}`;
-        return result;
+        return console.log(result);
     } else if ((playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock') || (playerSelection == 'Rock' && computerSelection == 'Scissors')) {
         result = `You Win! ${playerSelection} beats ${computerSelection}`;
-        return result;
+        gameResult.textContent = result;
+        win += 1;
+        console.log(`Wins: ${win}`);
+        if(win === 5) {endGame()};
+        return "win";
     } else {
         result = `You Lose! ${computerSelection} beats ${playerSelection}`;
-        return result;
-    }
-}
-
-//console.log(playRound(getPlayerSelection(), getComputerSelection()));
-
-
-// Play 5 round game - could pass a const of round into game if I wanted
-function game() {
-    // result of game
-    let result;
-    // for tracking result of rounds
-    let win = 0;
-    let lose = 0;
-    let draw = 0;
-
-    // loop through 5 rounds
-    for (let i = 0; i < 5; i++) {
-        // get result of the round
-        result = playRound(getPlayerSelection(), getComputerSelectionArray());
-        console.log(result);
-
-        //check if returned result message includes lose win or draw and increment
-        if (result.includes(`Lose!`)) {
-            lose += 1;
-            console.log(`wins: ${win}, loses ${lose}, draws: ${draw}`);
-        } else if (result.includes(`Win!`)) {
-            win += 1;
-            console.log(`wins: ${win}, loses ${lose}, draws: ${draw}`);
-        } else if (result.includes(`Draw!`)) {
-            draw += 1;
-            console.log(`wins: ${win}, loses ${lose}, draws: ${draw}`);
-        }
-    }
-
-    if (win > lose) {
-        result = `You Win!`;
-        return result;
-    } else if (win == lose) {
-        result = `It's a Draw!`;
-        return result;
-    } else {
-        result = `You Lose!`
-        return result;
+        gameResult.textContent = result;
+        lose += 1;
+        console.log(`Loses: ${lose}`);
+        if(lose === 5) {endGame()};
+        return "lose";
     }
 
 }
 
-console.log(game());
+
+
+//game:
+let win = 0;
+let lose = 0;
+
+// end the game when 5 rounds are won or lost
+function endGame() {
+
+    rock.removeEventListener("click", playRound);
+    paper.removeEventListener("click", playRound);
+    scissors.removeEventListener("click", playRound);
+
+    if (win === 5) {
+        console.log("You Win!");
+    } else if (lose === 5) {
+        console.log("You Lose-r!")
+    }
+}
+
