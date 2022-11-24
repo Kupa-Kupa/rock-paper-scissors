@@ -33,6 +33,22 @@ let container = document.querySelector("div.container");
 
 let newGameContainer = document.querySelector("div.new-game-container");
 
+
+
+let rpsButtons = document.querySelector("div.rps-buttons");
+
+let matchHistory = document.querySelector("div.match-history");
+
+let computer = document.querySelector("div.computer-selection");
+
+let player = document.querySelector("div.player-selection");
+
+let selections = document.querySelector("div.selections");
+
+
+
+
+
 // play round on button click
 rock.addEventListener("click", playRound);
 
@@ -69,17 +85,34 @@ function playRound(event) {
 
     // get computer selection
     let computerSelection = getComputerSelection();
+    computer.innerText = getEmoji(computerSelection);
+
+    if(computer.textContent === `${String.fromCodePoint(0x2702)}`) {
+        computer.classList.add("scissor-resize");
+    } else {
+        computer.classList.remove("scissor-resize");
+    }
 
     // get player selection from button id
     let playerSelection = event.target.id;
+    player.textContent = getEmoji(playerSelection);
+
+    if(player.textContent === `${String.fromCodePoint(0x2702)}`) {
+        player.classList.add("scissor-resize");
+    } else {
+        player.classList.remove("scissor-resize");
+    }
+
 
     // determine the winner and return the result
     if (playerSelection == computerSelection) {
         rounds += 1;
         round.textContent = `Round: ${rounds}`;
 
-        result = `Draw! ${playerSelection} draws ${computerSelection}`;
-        return console.log(result);
+        result = `Round ${rounds}: Draw! ${playerSelection} draws ${computerSelection}`;
+        displayMatchHistory(result);
+
+        return;
     } else if ((playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock') || (playerSelection == 'Rock' && computerSelection == 'Scissors')) {
         rounds += 1;
         round.textContent = `Round: ${rounds}`;
@@ -93,7 +126,8 @@ function playRound(event) {
         // gameResult.textContent = result;
         
 
-        result = `You Win! ${playerSelection} beats ${computerSelection}`;
+        result = `Round ${rounds}: You Win! ${playerSelection} beats ${computerSelection}`;
+        displayMatchHistory(result);
         return "win";
     } else {
         rounds += 1;
@@ -105,7 +139,8 @@ function playRound(event) {
 
         // gameResult.textContent = result;
 
-        result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        result = `Round ${rounds}: You Lose! ${computerSelection} beats ${playerSelection}`;
+        displayMatchHistory(result);
         return "lose";
     }
 
@@ -127,15 +162,19 @@ function endGame() {
 
     if (win === 5) {
         result.textContent = `You Won! ${win} - ${lose}`;
+        result.style.color = `var(--dark-green)`;
         console.log("You Win!");
     } else if (lose === 5) {
         result.textContent = `You Lose-r! ${lose} - ${win}`;
+        result.style.color = `var(--dark-red)`;
         console.log("You Lose-r!")
     }
 
+    // container.classList.toggle('hidden');
+    rpsButtons.classList.toggle('hidden');
     result.classList.toggle('hidden');
-    container.classList.toggle('hidden');
     newGameContainer.classList.toggle('hidden');
+    selections.classList.toggle('hidden');
 }
 
 
@@ -154,7 +193,42 @@ function startNewGame() {
     loses.textContent = `Loses: ${lose}`;
     round.textContent = `Round: ${rounds}`;
 
+    // container.classList.toggle('hidden');
+    rpsButtons.classList.toggle('hidden');
     result.classList.toggle('hidden');
-    container.classList.toggle('hidden');
     newGameContainer.classList.toggle('hidden');
+    selections.classList.toggle('hidden');
+
+    // remove match history for previous game
+    Array.from(matchHistory.children).forEach(child => {
+        matchHistory.removeChild(child);
+    });
+
+    // reset selections
+    computer.innerText = "-";
+    player.innerText = "-";
+}
+
+
+function displayMatchHistory(result) {
+    let p = document.createElement("p");
+
+    if(result.indexOf('Win') !== -1) {
+        p.style.color = "var(--dark-green)";
+    } else if (result.indexOf('Lose') !== -1) {
+        p.style.color = "var(--dark-red)";
+    }
+
+    p.textContent = result;
+    matchHistory.insertBefore(p, matchHistory.children[0]);
+}
+
+function getEmoji(selection) {
+    if(selection === "Rock") {
+        return String.fromCodePoint(0x1FAA8);
+    } else if (selection === "Paper") {
+        return String.fromCodePoint(0x1F4C4);
+    } else {
+        return String.fromCodePoint(0x2702);
+    }
 }

@@ -1,55 +1,168 @@
+/* Google Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+
+
+/*--- Root CSS Variables ---*/
+:root {
+    --button-default-font-size: 80px;
+    --off-white: rgb(241, 246, 252);
+    --dark-blue: rgb(0, 10, 20);
+    --dark-red: rgb(177, 26, 26);
+    --dark-green: rgb(21, 114, 78);
+}
+
+
+/*--- HTML ---*/
 html {
     box-sizing: border-box;
+
+    background-color: var(--dark-blue);
+    color: var(--off-white);
+    font-family: 'Sigmar One', cursive;
 }
 
 *, *:before, *:after {
     box-sizing: inherit;
 }
 
-/* Flexbox */
+
+/*--- Body ---*/
 body {
     /* want the body to take up 100% of viewable page */
     height: 100vh;
     margin: 0;
+
+    /* center text for page */
     text-align: center;
 
+    /* want to have header, main and footer in a column */
     display: flex;
     flex-direction: column;
 }
 
+
+/*--- Header ---*/
 header {
-    background-color: aquamarine;
-    min-height: 6em;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 150px;
+    /* margin-bottom: 20px; */
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
 }
 
+
+/*--- Main ---*/
+main {
+    /* grow main to fill page */
+    flex: 1;
+
+    /* set main to flex so that I can set max-width on #container */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+/*--- Footer ---*/
 footer {
-    background-color: yellowgreen;
-    min-height: 6em;
+    min-height: 100px;
+    /* margin-top: 20px; */
+    font-size: 1.1em;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+footer > p > a {
+    color: var(--dark-red);
+}
+
+
+/*--- Main Page Content ---*/
 .container {
+    max-width: 1000px;
     flex: 1;
 
     display: flex;
     flex-direction: column;
+    /* gap: 3em; */
+}
+
+.selections {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+}
+
+.player-selection, .computer-selection {
+    background-color: var(--off-white);
+    color: var(--dark-blue);
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 10px;
+    font-size: var(--button-default-font-size);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.selections p {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 1.5em;
+}
+
+.round {
+    font-size: 1.5em;
+    margin-top: 20px;
 }
 
 #score {
-    min-height: 1.2em;
+    font-size: 1.5em;
+    margin: 20px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#score > div {
+    min-width: 200px;
+}
+
+.match-history-container {
+    margin-bottom: 30px;
+
     flex: 1;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.match-history {
+    background-color: var(--off-white);
+    max-width: 800px;
+    min-height: 100px;
+    max-height: 100px;
+    /* border-radius: 8px; */
+    overflow: auto;
+    margin: 0 3em;
+
+    flex: 1;
+}
+
+.match-history > p {
+    color: var(--dark-blue);
+    font-size: 1.3em;
+    text-align: left;
+
+    margin: 10px 0px 10px 170px;
+}
+
 
 .rps-buttons {
     flex: 1;
@@ -59,11 +172,48 @@ footer {
     align-items: flex-start;
 }
 
-.rps-buttons > button {
-    font-size: 3em;
+.rps-buttons p{
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 1.5em;
 }
 
+button#Rock, button#Paper {
+    padding: 0;
+    background-color: var(--off-white);
+    border: solid 2px black;
+    border-radius: 10px;
+
+    min-width: 200px;
+    min-height: 200px;
+    font-size: var(--button-default-font-size);
+}
+
+button#Rock:hover, button#Paper:hover {
+    font-size: calc(1.2 * var(--button-default-font-size));
+    background-color: var(--dark-green);
+}
+
+button#Scissors {
+    padding: 0;
+    background-color: var(--off-white);
+    border: solid 2px black;
+    border-radius: 10px;
+
+    min-width: 200px;
+    min-height: 200px;
+    font-size: calc(1.5 * var(--button-default-font-size));
+}
+
+button#Scissors:hover {
+    font-size: calc(1.2 * (1.5 * var(--button-default-font-size)));
+    background-color: var(--dark-green);
+}
+
+
 .new-game-container{
+    margin-bottom: 50px;
+
     flex: 1;
 
     display: flex;
@@ -72,14 +222,47 @@ footer {
     align-items: center;
 }
 
-/* .result {
-    flex: 1;
+.result {
+    font-size: 4em;
+    margin-top: 40px;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+
+/* New Game button */
+
+button#start-new-game {
+    font-family: 'Sigmar One', cursive;
+    background-color: var(--off-white);
+    color: var(--dark-blue);
+
+    font-size: 1.5em;
+
+    border: none;
+    padding: 0.5em 1em;
+    margin: 1em;
+}
+
+button#start-new-game:hover {
+    background-color: var(--dark-green);
+    color: var(--off-white);
+}
 
 .hidden {
     display: none;
+}
+
+.scissor-resize {
+    font-size: calc(1.14 * var(--button-default-font-size));
+}
+
+
+
+/*--- Media Queries ---*/
+
+@media (max-width: 800px) {
+    .match-history > p {
+        /* margin: 10px 0px 10px 110px; */
+        margin: 10px auto;
+        text-align: center;
+    }
 }

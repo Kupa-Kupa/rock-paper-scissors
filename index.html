@@ -15,31 +15,75 @@
         <h1>Rock Paper Scissors</h1>
     </header>
 
-    <!-- <div class="result hidden"></div> -->
 
-    <div class="container">
+    <main>
 
-        <div id="score">
-            <div id="wins">Wins: 0</div>
-            <div id="loses">Loses: 0</div>
-            <div id="rounds">Round: 0</div>
+        <div class="container">
+
+            <div class="selections">
+                <div>
+                    <div class="player-selection">-</div>
+                    <p>Player</p>
+                </div>
+                <div>
+                    <div class="computer-selection">-</div>
+                    <p>Computer</p>
+                </div>
+            </div>
+
+            <div class="new-game-container hidden">
+                <div class="result hidden"></div>
+                <button id="start-new-game">New Game</button>
+            </div>
+
+            <div class="round">
+                <div id="rounds">Round: 0</div>
+            </div>
+
+            <div id="score">
+                <div id="wins">Wins: 0</div>
+                <div id="loses">Loses: 0</div>
+                <!-- <div id="rounds">Round: 0</div> -->
+            </div>
+
+            <div class="match-history-container">
+                <div class="match-history"></div>
+            </div>
+
+            <div class="rps-buttons">
+                <div class="rock">
+                    <button id="Rock">&#x1FAA8;</button>
+                    <p>Rock</p>
+                </div>
+
+                <div class="paper">
+                    <button id="Paper">&#x1F4C4;</button>
+                    <p>Paper</p>
+                </div>
+
+                <div class="scissors">
+                    <button id="Scissors">&#x2702;</button>
+                    <p>Scissors</p>
+                </div>
+            </div>
+
+            
+
         </div>
 
-        <div class="rps-buttons">
-            <button id="Rock">ROCK &#x1FAA8;</button>
-            <button id="Paper">PAPER &#x1F4C4;</button>
-            <button id="Scissors">SCISSORS &#x2702;</button>
-        </div>
+        <!-- <div class="new-game-container hidden">
+            <div class="result hidden"></div>
+            <button id="start-new-game">New Game</button>
+        </div> -->
 
-    </div>
-
-    <div class="new-game-container hidden">
-        <div class="result hidden"></div>
-        <button id="start-new-game">New Game</button>
-    </div>
+    </main>
     
 
-    <footer><a href="https://youtu.be/wKlE5ICe5rA?t=5">very important footer link</a></footer>
+    <footer>
+        <p>&#x1F451; 
+            <a href="https://youtu.be/wKlE5ICe5rA?t=5" target="_blank">All Hail the King!</a> 
+        &#x1F451;</p>
+    </footer>
 
 </body>
 </html>
