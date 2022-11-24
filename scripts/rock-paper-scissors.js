@@ -1,7 +1,7 @@
 /*  Rock Paper Scissors with buttons ui */
 
-/*  Requirements
-
+/*  Requirements */
+/*
     Player should be able to play the game by clicking on buttons
     Button for each option - rock, paper, scissors
     Display results on screen
@@ -19,12 +19,30 @@ let scissors = document.getElementById("Scissors");
 
 let gameResult = document.getElementById("score");
 
+let newGame = document.getElementById("start-new-game");
+
+let wins = document.getElementById("wins");
+
+let loses = document.getElementById("loses");
+
+let round = document.getElementById("rounds");
+
+let result = document.querySelector("div.result");
+
+let container = document.querySelector("div.container");
+
+let newGameContainer = document.querySelector("div.new-game-container");
+
 // play round on button click
 rock.addEventListener("click", playRound);
 
 paper.addEventListener("click", playRound);
 
 scissors.addEventListener("click", playRound);
+
+newGame.addEventListener("click", startNewGame);
+
+
 
 
 
@@ -57,21 +75,37 @@ function playRound(event) {
 
     // determine the winner and return the result
     if (playerSelection == computerSelection) {
+        rounds += 1;
+        round.textContent = `Round: ${rounds}`;
+
         result = `Draw! ${playerSelection} draws ${computerSelection}`;
         return console.log(result);
     } else if ((playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock') || (playerSelection == 'Rock' && computerSelection == 'Scissors')) {
-        result = `You Win! ${playerSelection} beats ${computerSelection}`;
-        gameResult.textContent = result;
+        rounds += 1;
+        round.textContent = `Round: ${rounds}`;
+
         win += 1;
-        console.log(`Wins: ${win}`);
+        wins.textContent = `Wins: ${win}`;
+
         if(win === 5) {endGame()};
+        
+        
+        // gameResult.textContent = result;
+        
+
+        result = `You Win! ${playerSelection} beats ${computerSelection}`;
         return "win";
     } else {
-        result = `You Lose! ${computerSelection} beats ${playerSelection}`;
-        gameResult.textContent = result;
+        rounds += 1;
+        round.textContent = `Round: ${rounds}`;
+
         lose += 1;
-        console.log(`Loses: ${lose}`);
+        loses.textContent = `Loses: ${lose}`;
         if(lose === 5) {endGame()};
+
+        // gameResult.textContent = result;
+
+        result = `You Lose! ${computerSelection} beats ${playerSelection}`;
         return "lose";
     }
 
@@ -82,6 +116,7 @@ function playRound(event) {
 //game:
 let win = 0;
 let lose = 0;
+let rounds = 0;
 
 // end the game when 5 rounds are won or lost
 function endGame() {
@@ -91,9 +126,35 @@ function endGame() {
     scissors.removeEventListener("click", playRound);
 
     if (win === 5) {
+        result.textContent = `You Won! ${win} - ${lose}`;
         console.log("You Win!");
     } else if (lose === 5) {
+        result.textContent = `You Lose-r! ${lose} - ${win}`;
         console.log("You Lose-r!")
     }
+
+    result.classList.toggle('hidden');
+    container.classList.toggle('hidden');
+    newGameContainer.classList.toggle('hidden');
 }
 
+
+// reset game
+function startNewGame() {
+    console.log("new game start")
+    rock.addEventListener("click", playRound);
+    paper.addEventListener("click", playRound);
+    scissors.addEventListener("click", playRound);
+
+    win = 0;
+    lose = 0;
+    rounds = 0;
+
+    wins.textContent = `Wins: ${win}`;
+    loses.textContent = `Loses: ${lose}`;
+    round.textContent = `Round: ${rounds}`;
+
+    result.classList.toggle('hidden');
+    container.classList.toggle('hidden');
+    newGameContainer.classList.toggle('hidden');
+}

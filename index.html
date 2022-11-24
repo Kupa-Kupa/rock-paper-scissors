@@ -15,9 +15,15 @@
         <h1>Rock Paper Scissors</h1>
     </header>
 
+    <!-- <div class="result hidden"></div> -->
+
     <div class="container">
 
-        <div id="score"></div>
+        <div id="score">
+            <div id="wins">Wins: 0</div>
+            <div id="loses">Loses: 0</div>
+            <div id="rounds">Round: 0</div>
+        </div>
 
         <div class="rps-buttons">
             <button id="Rock">ROCK &#x1FAA8;</button>
@@ -27,7 +33,10 @@
 
     </div>
 
-    <div id="new-game"><button>New Game</button></div>
+    <div class="new-game-container hidden">
+        <div class="result hidden"></div>
+        <button id="start-new-game">New Game</button>
+    </div>
     
 
     <footer>very important footer stuff</footer>
