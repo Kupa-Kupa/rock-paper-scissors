@@ -174,7 +174,7 @@ function endGame() {
     rpsButtons.classList.toggle('hidden');
     result.classList.toggle('hidden');
     newGameContainer.classList.toggle('hidden');
-    selections.classList.toggle('hidden');
+    // selections.classList.toggle('hidden');
 }
 
 
@@ -197,7 +197,7 @@ function startNewGame() {
     rpsButtons.classList.toggle('hidden');
     result.classList.toggle('hidden');
     newGameContainer.classList.toggle('hidden');
-    selections.classList.toggle('hidden');
+    // selections.classList.toggle('hidden');
 
     // remove match history for previous game
     Array.from(matchHistory.children).forEach(child => {

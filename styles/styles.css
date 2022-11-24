@@ -212,7 +212,7 @@ button#Scissors:hover {
 
 
 .new-game-container{
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
 
     flex: 1;
 
@@ -224,7 +224,7 @@ button#Scissors:hover {
 
 .result {
     font-size: 4em;
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 
@@ -239,7 +239,8 @@ button#start-new-game {
 
     border: none;
     padding: 0.5em 1em;
-    margin: 1em;
+    /* margin: 1em; */
+    margin: 0.65em;
 }
 
 button#start-new-game:hover {
