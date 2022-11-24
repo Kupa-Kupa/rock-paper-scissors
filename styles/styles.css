@@ -1,0 +1,48 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Flexbox */
+body {
+    /* want the body to take up 100% of viewable page */
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#score {
+    min-height: 1.2em;
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rps-buttons > button {
+    font-size: 3em;
+    flex: 1;
+
+}
+
+#new-game {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -5,16 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="/styles/styles.css">
     <!-- must defer script loading or the script will be referencing nothing -->
     <script src="./scripts/rock-paper-scissors.js" defer></script>
 </head>
 <body>
 
-    <button id="Rock">ROCK</button>
-    <button id="Paper">PAPER</button>
-    <button id="Scissors">SCISSORS</button>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
 
-    <div id="score"></div>
+    <div class="container">
+
+        <div id="score"></div>
+
+        <div class="rps-buttons">
+            <button id="Rock">ROCK &#x1FAA8;</button>
+            <button id="Paper">PAPER &#x1F4C4;</button>
+            <button id="Scissors">SCISSORS &#x2702;</button>
+        </div>
+
+    </div>
+
+    <div id="new-game"><button>New Game</button></div>
     
+
+    <footer>very important footer stuff</footer>
+
 </body>
 </html>
