@@ -1,15 +1,5 @@
 /*  Rock Paper Scissors with buttons ui */
 
-/*  Requirements */
-/*
-    Player should be able to play the game by clicking on buttons
-    Button for each option - rock, paper, scissors
-    Display results on screen
-    Display running score and announce winner of the game when
-    one player reaches 5 points
-*/
-
-
 // get reference to buttons
 let rock = document.getElementById("Rock");
 
@@ -111,6 +101,7 @@ function playRound(event) {
 
         result = `Round ${rounds}: Draw! ${playerSelection} draws ${computerSelection}`;
         displayMatchHistory(result);
+        colorSelection(result);
 
         return;
     } else if ((playerSelection == 'Scissors' && computerSelection == 'Paper') || (playerSelection == 'Paper' && computerSelection == 'Rock') || (playerSelection == 'Rock' && computerSelection == 'Scissors')) {
@@ -128,6 +119,8 @@ function playRound(event) {
 
         result = `Round ${rounds}: You Win! ${playerSelection} beats ${computerSelection}`;
         displayMatchHistory(result);
+        colorSelection(result);
+
         return "win";
     } else {
         rounds += 1;
@@ -141,6 +134,8 @@ function playRound(event) {
 
         result = `Round ${rounds}: You Lose! ${computerSelection} beats ${playerSelection}`;
         displayMatchHistory(result);
+        colorSelection(result);
+        
         return "lose";
     }
 
@@ -180,7 +175,7 @@ function endGame() {
 
 // reset game
 function startNewGame() {
-    console.log("new game start")
+    console.log("New Game Started")
     rock.addEventListener("click", playRound);
     paper.addEventListener("click", playRound);
     scissors.addEventListener("click", playRound);
@@ -207,6 +202,13 @@ function startNewGame() {
     // reset selections
     computer.innerText = "-";
     player.innerText = "-";
+    player.classList.remove("selection-win");
+    player.classList.remove("selection-lose");
+    computer.classList.remove("selection-win");
+    computer.classList.remove("selection-lose");
+
+    player.classList.remove("scissor-resize");
+    computer.classList.remove("scissor-resize");
 }
 
 
@@ -221,6 +223,31 @@ function displayMatchHistory(result) {
 
     p.textContent = result;
     matchHistory.insertBefore(p, matchHistory.children[0]);
+}
+
+
+// add filter drop shadow on selection
+function colorSelection(result) {
+    if( (result.indexOf('Win') !== -1) && (!(player.classList.contains("selection-win"))) ) {
+        player.classList.toggle("selection-win");
+        computer.classList.toggle("selection-lose");
+
+        player.classList.remove("selection-lose");
+        computer.classList.remove("selection-win");
+        
+    } else if ( (result.indexOf('Lose') !== -1) && (!(player.classList.contains("selection-lose"))) ) {
+        player.classList.toggle("selection-lose");
+        computer.classList.toggle("selection-win");
+
+        player.classList.remove("selection-win");
+        computer.classList.remove("selection-lose");
+
+    } else if (result.indexOf('Draw') !== -1) {
+        player.classList.remove("selection-win");
+        player.classList.remove("selection-lose");
+        computer.classList.remove("selection-win");
+        computer.classList.remove("selection-lose");
+    }
 }
 
 function getEmoji(selection) {

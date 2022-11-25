@@ -5,6 +5,7 @@
 /*--- Root CSS Variables ---*/
 :root {
     --button-default-font-size: 80px;
+    --button-mobile-font-size: 40px;
     --off-white: rgb(241, 246, 252);
     --dark-blue: rgb(0, 10, 20);
     --dark-red: rgb(177, 26, 26);
@@ -107,6 +108,17 @@ footer > p > a {
     justify-content: center;
     align-items: center;
 }
+
+.selection-win {
+    filter: drop-shadow(0 0 0.5em var(--dark-green));
+    background-color: var(--dark-green);
+}
+
+.selection-lose {
+    filter: drop-shadow(0 0 0.5em var(--dark-red));
+    background-color: var(--dark-red);
+}
+
 
 div.selections p {
     margin: 0;
@@ -260,10 +272,123 @@ button#start-new-game:hover {
 
 /*--- Media Queries ---*/
 
-@media (max-width: 800px) {
+@media (max-width: 980px) {
     .match-history > p {
         /* margin: 10px 0px 10px 110px; */
         margin: 10px auto;
         text-align: center;
     }
+}
+
+@media (max-width: 700px) {
+    main {
+        align-items: center;
+    }
+
+    header {
+        font-size: 1em;
+        min-height: 100px;
+    }
+
+    footer {
+        min-height: 80px;
+    }
+
+    .selections {
+        gap: 2em;
+    }
+
+    .player-selection, .computer-selection {
+        min-width: 120px;
+        min-height: 120px;
+
+        font-size: calc(1.15 * (var(--button-mobile-font-size)));
+    }
+
+    .scissor-resize {
+        font-size: calc(1.6 * var(--button-mobile-font-size));
+    }
+
+    div.selections p {
+        padding-top: 10px;
+        font-size: 1em;
+    }
+
+    .round {
+        font-size: 1.2em;
+        margin-top: 15px;
+    }
+
+    #score {
+        font-size: 1.2em;
+        margin: 15px 0;
+        gap: 0;
+    }
+
+    #score > div {
+        min-width: 150px;
+    }
+
+    .match-history-container {
+        margin-bottom: 10px;
+    }
+
+    .match-history {
+        min-height: 70px;
+        max-height: 70px;
+        max-width: 320px;
+    }
+
+    .match-history > p {
+        font-size: 1em;
+        padding: 0 40px;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+
+    button#Rock, button#Paper {
+        min-width: 100px;
+        min-height: 100px;
+        font-size: var(--button-mobile-font-size);
+    }
+    
+    button#Rock:hover, button#Paper:hover {
+        font-size: calc(1.2 * var(--button-mobile-font-size));
+    }
+    
+    button#Scissors {
+        min-width: 100px;
+        min-height: 100px;
+        font-size: calc(1.5 * var(--button-mobile-font-size));
+    }
+    
+    button#Scissors:hover {
+        font-size: calc(1.2 * (1.5 * var(--button-mobile-font-size)));
+    }
+
+    .rps-buttons {
+        justify-content: center;
+        gap: 0.8em;
+        margin-top: 10px;
+    }
+
+    .rps-buttons p{
+        font-size: 1em;
+    }
+
+
+
+    .result {
+        font-size: 2em;
+        /* margin-top: 40px; */
+    }
+    
+    
+    /*  Makes sure that match history container doesn't move
+        on game end */
+    
+    button#start-new-game {
+        margin: 0.6em;
+    } 
 }
