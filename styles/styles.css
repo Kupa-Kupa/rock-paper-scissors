@@ -225,7 +225,7 @@ button#Scissors:hover {
     align-items: center;
 }
 
-.result {
+.game-result {
     font-size: 4em;
 }
 
@@ -363,7 +363,7 @@ button#start-new-game:hover {
         font-size: 1em;
     }
 
-    .result {
+    .game-result {
         font-size: 2em;
     }
     
